@@ -262,7 +262,6 @@ public class Frequencer implements FrequencerInterface{
 	public static void main(String[] args) {
 		Frequencer frequencerObject;
 		try {
-      frequencerObject = new Frequencer();
 			frequencerObject = new Frequencer();
 			frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
 			frequencerObject.printSuffixArray(); // you may use this line for DEBUG
