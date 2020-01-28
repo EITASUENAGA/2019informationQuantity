@@ -159,10 +159,6 @@ public class Frequencer implements FrequencerInterface{
 		//
     int length=Math.min(mySpace.length-i,k-j);
 
-    if(mySpace.length-i<k-j+1){
-      return -1;
-    }
-
     for(int x=0;x<length;x++){
       int diff=mySpace[x+i]-myTarget[x+j];
       if(diff>0){
@@ -170,6 +166,10 @@ public class Frequencer implements FrequencerInterface{
       }else if(diff<0){
         return -1;
       }
+    }
+
+		if(mySpace.length-i<k-j+1){
+      return -1;
     }
 
 		return 0; // この行は変更しなければならない。

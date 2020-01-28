@@ -53,7 +53,7 @@ public class TestCase {
     public static void main(String[] args) {
 	try {
 	    FrequencerInterface  myObject;
-      FrequencerInterface test,test1,test2,test3,;
+      FrequencerInterface test,test1,test2,test3;
 	    int freq;
 	    System.out.println("checking s4.B193333.Frequencer");
       test =new s4.B193333.Frequencer();
