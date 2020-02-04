@@ -168,10 +168,9 @@ public class Frequencer implements FrequencerInterface{
       }
     }
 
-		if(mySpace.length-i<k-j+1){
+		if(mySpace.length-i<k-j){
       return -1;
     }
-
 		return 0; // この行は変更しなければならない。
 	}
 
@@ -236,6 +235,7 @@ public class Frequencer implements FrequencerInterface{
 		//
 		//　ここにコードを記述せよ
 		//
+
     boolean found=false;
     for(int x=0;x<suffixArray.length;x++){
       if(targetCompare(suffixArray[x],start,end)==0){
@@ -279,7 +279,7 @@ public class Frequencer implements FrequencerInterface{
                A:o Hi Ho
             */
 
-			frequencerObject.setTarget("Hi".getBytes());
+			frequencerObject.setTarget("Ho ".getBytes());
 			//
 			// ****  Please write code to check subByteStartIndex, and subByteEndIndex
 			//
