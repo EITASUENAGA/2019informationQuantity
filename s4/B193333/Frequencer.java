@@ -88,16 +88,43 @@ public class Frequencer implements FrequencerInterface{
 		//
 		// ここに、int suffixArrayをソートするコードを書け。
 		// 　順番はsuffixCompareで定義されるものとする。
-        for (int i = 0; i < suffixArray.length - 1; i++) {
-            for (int j = suffixArray.length - 1; j > i; j--) {
-                if (suffixCompare(suffixArray[j - 1], suffixArray[j]) > 0) {
-                    int tmpNum = suffixArray[j - 1];
-                    suffixArray[j - 1] = suffixArray[j];
-                    suffixArray[j] = tmpNum;
-                }
+
+		//buble
+        // for (int i = 0; i < suffixArray.length - 1; i++) {
+        //     for (int j = suffixArray.length - 1; j > i; j--) {
+        //         if (suffixCompare(suffixArray[j - 1], suffixArray[j]) > 0) {
+        //             int tmpNum = suffixArray[j - 1];
+        //             suffixArray[j - 1] = suffixArray[j];
+        //             suffixArray[j] = tmpNum;
+        //         }
+        //     }
+        // }
+
+				// quick
+        quickSort(0, suffixArray.length - 1);
+	}
+
+	// quick sort
+    private void quickSort(int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int pivot = suffixArray[(start + end) / 2];
+        int i = start, j = end, tmp;
+        while (i <= j) {
+            while (suffixCompare(suffixArray[i], pivot) < 0) i++;
+            while (suffixCompare(suffixArray[j], pivot) > 0) j--;
+            if (i <= j) {
+                tmp = suffixArray[i];
+                suffixArray[i] = suffixArray[j];
+                suffixArray[j] = tmp;
+                i++;
+                j--;
             }
         }
-	}
+        quickSort(start, j);
+        quickSort(i, end);
+    }
 
 	// Suffix Arrayを用いて、文字列の頻度を求めるコード
 	// ここから、指定する範囲のコードは変更してはならない。
@@ -201,13 +228,28 @@ public class Frequencer implements FrequencerInterface{
 		//
 		// ここにコードを記述せよ。
 		//
-    for(int x=0;x<suffixArray.length;x++){
-      if(targetCompare(suffixArray[x],start,end)==0){
-        return x;
-      }
-    }
+		//liner
+    // for(int x=0;x<suffixArray.length;x++){
+    //   if(targetCompare(suffixArray[x],start,end)==0){
+    //     return x;
+    //   }
+    // }
+		//
+		// return suffixArray.length; //このコードは変更しなければならない。
 
-		return suffixArray.length; //このコードは変更しなければならない。
+		// binary
+			 int i = 0, j = suffixArray.length - 1;
+			 String str = "Hi Ho Hi Ho";
+			 while (i <= j) {
+					 int x = (i + j) / 2;
+					 int ret = targetCompare(suffixArray[x], start, end);
+					 if (ret > 0) j = x - 1;
+					 else if (ret < 0) i = x + 1;
+					 else if (x == 0) return x;
+					 else if (targetCompare(suffixArray[x - 1], start, end) != 0) return x;
+					 else j = x - 1;
+			 }
+			 return suffixArray.length;
 	}
 
 	private int subByteEndIndex(int start, int end) {
@@ -236,16 +278,31 @@ public class Frequencer implements FrequencerInterface{
 		//　ここにコードを記述せよ
 		//
 
-    boolean found=false;
-    for(int x=0;x<suffixArray.length;x++){
-      if(targetCompare(suffixArray[x],start,end)==0){
-        found=true;
-      }
-      if(targetCompare(suffixArray[x],start,end)!=0&&found){
-        return x;
-      }
-    }
-		return suffixArray.length; // この行は変更しなければならない、
+		//liner
+    // boolean found=false;
+    // for(int x=0;x<suffixArray.length;x++){
+    //   if(targetCompare(suffixArray[x],start,end)==0){
+    //     found=true;
+    //   }
+    //   if(targetCompare(suffixArray[x],start,end)!=0&&found){
+    //     return x;
+    //   }
+    // }
+
+
+		// binary
+			 int i = 0, j = suffixArray.length - 1;
+			 String str = "Hi Ho Hi Ho";
+			 while (i <= j) {
+					 int x = (i + j) / 2;
+					 int ret = targetCompare(suffixArray[x], start, end);
+					 if (ret > 0) j = x - 1;
+					 else if (ret < 0) i = x + 1;
+					 else if (x + 1 == suffixArray.length) return suffixArray.length;
+					 else if (targetCompare(suffixArray[x + 1], start, end) != 0) return x + 1;
+					 else i = x + 1;
+			 }
+			 return suffixArray.length;// この行は変更しなければならない、
 	}
 
 
