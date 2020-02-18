@@ -241,16 +241,16 @@ public class Frequencer implements FrequencerInterface{
 			 int i = 0, j = suffixArray.length - 1;
 			 String str = "Hi Ho Hi Ho";
 			 while (i <= j) {
-					 int x = (i + j) / 2;
-					 int ret = targetCompare(suffixArray[x], start, end);
-					 if (ret > 0) j = x - 1;
-					 else if (ret < 0) i = x + 1;
-					 else if (x == 0) return x;
-					 else if (targetCompare(suffixArray[x - 1], start, end) != 0) return x;
-					 else j = x - 1;
+				 int x = (i + j) / 2;
+				 int ret = targetCompare(suffixArray[x], start, end);
+				 if (ret > 0) j = x - 1;
+				 else if (ret < 0) i = x + 1;
+				 else if (x == 0) return x;
+				 else if (targetCompare(suffixArray[x - 1], start, end) != 0) return x;
+				 else j = x - 1;
 			 }
 			 return suffixArray.length;
-	}
+		 }
 
 	private int subByteEndIndex(int start, int end) {
 		//suffix arrayのなかで、目的の文字列の出現しなくなる場所を求めるメソッド
